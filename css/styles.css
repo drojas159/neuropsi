@@ -1,0 +1,38 @@
+.triangle {
+    content: url(../images/triangle.png);
+}
+.cross {
+    content: url(../images/cross.png);
+}
+.diamond {
+    content: url(../images/diamond.png);
+}
+.eight-pointed-star {
+    content: url(../images/eight-pointed-star.png);
+}
+.five-pointed-star {
+    content: url(../images/five-pointed-star.png);
+}
+.four-pointed-star {
+    content: url(../images/four-pointed-star.png);
+}
+.hourglass {
+    content: url(../images/hourglass.png);
+}
+.petal {
+    content: url(../images/petal.png);
+}
+.rounded-cross {
+    content: url(../images/rounded-cross.png);
+}
+.six-pointed-star {
+    content: url(../images/six-pointed-star.png);
+}
+.xmark {
+    content: url(../images/xmark.png);
+}
+
+.icon {
+    width:40px;
+    height:45px;
+}
