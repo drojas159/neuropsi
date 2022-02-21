@@ -33,14 +33,58 @@ var neuropsiGrid = [
      'eight-pointed-star','rounded-cross','four-pointed-star','diamond','triangle','six-pointed-star','eight-pointed-star']
 ]
 
-for (var i = 0; i < neuropsiGrid.length; i++) {
-    for ( var j = 0; j < neuropsiGrid[i].length; j++) {
-        console.log(neuropsiGrid[i][j]);
+var correctPlaces =[
+    "item_0_1",
+    "item_0_6"	,
+    "item_1_8"	,
+    "item_1_10"	,
+    "item_2_4"	,
+    "item_2_13"	,
+    "item_4_9"	,
+    "item_5_2"	,
+    "item_5_12"	,
+    "item_6_0"	,
+    "item_7_3"	,
+    "item_7_10"	,
+    "item_8_9"	,
+    "item_8_12"	,
+    "item_9_0"	,
+    "item_9_4"	,
+    "item_10_10"	,
+    "item_11_1"	,
+    "item_11_5"	,
+    "item_13_0"	,
+    "item_13_7"	,
+    "item_13_13"	,
+    "item_14_6"	,
+    "item_14_10"	
+]
+
+function buildNeuropsiGrid (){
+    var neuropsiGridHtml;
+    neuropsiGridHtml = '<table id="neuropsi-grid">';
+    for (var i=0; i< neuropsiGrid.length; i++){
+        neuropsiGridHtml = neuropsiGridHtml + '<tr>';
+        for(var j=0; j< neuropsiGrid[i].length;j++){
+            neuropsiGridHtml = neuropsiGridHtml + '<th><button id="item_'+i+'_'+j+'" value="'+neuropsiGrid[i][j]+'" onclick="identifyElement(this.id,this.value)"><img class="'+neuropsiGrid[i][j]+' icon"></button></th>'
+        }
+        neuropsiGridHtml = neuropsiGridHtml +'</tr>';
     }
+    neuropsiGridHtml = neuropsiGridHtml +'</table>';
+    return neuropsiGridHtml;
 }
 
-for (var neuropsiArray of neuropsiGrid){
-    for(var item of neuropsiArray){
-        console.log(item);
+var counter = 0;
+
+function identifyElement(id, figure){
+    var imageClass = document.getElementById(id).firstChild.className;
+    if (figure == "five-pointed-star" && imageClass.indexOf("-clicked") == -1  ){
+        counter++;
+        document.getElementById(id).firstChild.className = figure + "-clicked icon";
     }
+    document.getElementById("score-div").innerHTML="<h1>Puntaje: "+counter+"</h1>";
+}
+
+window.onload = function() {
+    document.getElementById("neuropsi-div").innerHTML = buildNeuropsiGrid ();
 }

@@ -31,8 +31,45 @@
 .xmark {
     content: url(../images/xmark.png);
 }
+.triangle-clicked {
+    content: url(../images/triangle-clicked.png);
+}
+.cross-clicked {
+    content: url(../images/cross-clicked.png);
+}
+.diamond-clicked {
+    content: url(../images/diamond-clicked.png);
+}
+.eight-pointed-star-clicked {
+    content: url(../images/eight-pointed-star-clicked.png);
+}
+.five-pointed-star-clicked {
+    content: url(../images/five-pointed-star-clicked.png);
+}
+.four-pointed-star-clicked {
+    content: url(../images/four-pointed-star-clicked.png);
+}
+.hourglass-clicked {
+    content: url(../images/hourglass-clicked.png);
+}
+.petal-clicked {
+    content: url(../images/petal-clicked.png);
+}
+.rounded-cross-clicked {
+    content: url(../images/rounded-cross-clicked.png);
+}
+.six-pointed-star-clicked {
+    content: url(../images/six-pointed-star-clicked.png);
+}
+.xmark-clicked {
+    content: url(../images/xmark-clicked.png);
+}
 
 .icon {
-    width:40px;
-    height:45px;
+    width:35px;
+    height:40px;
 }
+
+.container {
+    float: left;
+}  
