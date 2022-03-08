@@ -66,7 +66,7 @@ function buildNeuropsiGrid (){
     for (var i=0; i< neuropsiGrid.length; i++){
         neuropsiGridHtml = neuropsiGridHtml + '<tr>';
         for(var j=0; j< neuropsiGrid[i].length;j++){
-            neuropsiGridHtml = neuropsiGridHtml + '<th><button id="item_'+i+'_'+j+'" value="'+neuropsiGrid[i][j]+'" onclick="identifyElement(this.id,this.value)"><img class="'+neuropsiGrid[i][j]+' icon"></button></th>'
+            neuropsiGridHtml = neuropsiGridHtml + '<th><button id="item_'+i+'_'+j+'" class="neuropsi-button" value="'+neuropsiGrid[i][j]+'" onclick="identifyElement(this.id,this.value)" disabled><img class="'+neuropsiGrid[i][j]+' icon"></button></th>'
         }
         neuropsiGridHtml = neuropsiGridHtml +'</tr>';
     }
@@ -74,17 +74,107 @@ function buildNeuropsiGrid (){
     return neuropsiGridHtml;
 }
 
-var counter = 0;
+var correct = 0;
+var incorrect = 0;
 
 function identifyElement(id, figure){
     var imageClass = document.getElementById(id).firstChild.className;
     if (figure == "five-pointed-star" && imageClass.indexOf("-clicked") == -1  ){
-        counter++;
+        correct++;
+        document.getElementById(id).firstChild.className = figure + "-clicked icon";
+    }else if (figure != "five-pointed-star" && imageClass.indexOf("-clicked") == -1  ){
+        incorrect++;
         document.getElementById(id).firstChild.className = figure + "-clicked icon";
     }
-    document.getElementById("score-div").innerHTML="<h1>Puntaje: "+counter+"</h1>";
+    document.getElementById("amount-correct").innerHTML="Correctas: "+correct;
+    document.getElementById("amount-incorrect").innerHTML="Incorrectas: "+incorrect;
 }
 
 window.onload = function() {
     document.getElementById("neuropsi-div").innerHTML = buildNeuropsiGrid ();
+}
+
+let horas = 0;
+let minutos = 3;
+let segundos =0;
+
+function loadSeconds(){
+    let txtSeconds;
+
+    if(segundos <0 ){
+        segundos=59;
+    }
+
+    if(segundos < 10){
+        txtSeconds = `0${segundos}`;
+    }else{
+        txtSeconds = segundos;
+    }
+    document.getElementById("second").innerHTML=txtSeconds;
+    if (minutos == 0 && segundos >0){
+        segundos --;
+        unlockButtons();
+    }else if (minutos>0){
+        segundos--;
+        unlockButtons();
+    }else if (minutos == 0 && segundos ==0){
+        blockButtons();
+    }
+    loadMinutes(segundos)
+}
+
+function loadMinutes(segundos){
+    let txtMinutes;
+
+    if(segundos == -1 && minutos !==0){
+        setTimeout(() => {
+            minutos --;
+        }, 500)
+    }
+
+    if(minutos < 10){
+        txtMinutes = `0${minutos}`;
+    }else{
+        txtMinutes = minutos;
+    }
+    document.getElementById("minute").innerHTML=txtMinutes+":";
+}
+
+counterClick=0;
+var interval;
+function startTemp(){
+    if(counterClick==0){
+        interval=setInterval(loadSeconds, 1000)
+        
+        counterClick++;
+    }
+};
+
+function blockButtons(){
+    buttons=document.querySelectorAll('.neuropsi-button');
+        buttons.forEach((button, index) => {
+            button.disabled = true;
+        });
+}
+
+function unlockButtons(){
+    buttons=document.querySelectorAll('.neuropsi-button');
+        buttons.forEach((button, index) => {
+            button.disabled = false;
+        });
+}
+
+function restart(){
+    counterClick=0;
+    minutos=3;
+    segundos=0;
+    correct = 0;
+    incorrect = 0;
+    clearInterval(interval);
+    document.getElementById("minute").innerHTML="03:";
+    document.getElementById("second").innerHTML="00";
+    document.getElementById("amount-correct").innerHTML="Correctas: "+correct;
+    document.getElementById("amount-incorrect").innerHTML="Incorrectas: "+incorrect;
+    document.getElementById("neuropsi-div").innerHTML = buildNeuropsiGrid ();
+    blockButtons();
 }

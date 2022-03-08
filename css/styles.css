@@ -1,3 +1,20 @@
+.neuropsi-button {
+    padding: 2px;
+    border: 0;
+    margin: 0;
+    background-color: #baccd9;
+}
+
+body{
+    background-color: #EDB309;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.logo{
+    content: url(../images/logo-header.svg);
+    float: left;
+    margin-right:30px
+}
 .triangle {
     content: url(../images/triangle.png);
 }
@@ -66,10 +83,42 @@
 }
 
 .icon {
-    width:35px;
-    height:40px;
+    height:35px;
+    padding: 2px;
 }
 
 .container {
     float: left;
+    background-color: #0062a7;
+    padding: 20px;
+    height: auto ;
+    color: #d3e1eb;
 }  
+.time{
+    float: left;
+}
+
+.score{
+    font-size: 30px;
+    display: block;
+}
+
+#countdown{
+    background-color: #06a123;
+    font-size: 30px;
+    float: left;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:#d3e1eb;
+}
+
+#restart{
+    background-color: #b5050b;
+    font-size: 30px;
+    display: block;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:#d3e1eb;
+}
+
+th{
+    padding: 0;
+}
