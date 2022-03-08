@@ -113,10 +113,10 @@ function loadSeconds(){
     document.getElementById("second").innerHTML=txtSeconds;
     if (minutos == 0 && segundos >0){
         segundos --;
-        unlockButtons();
+        if(lockedButtons == true)unlockButtons();
     }else if (minutos>0){
         segundos--;
-        unlockButtons();
+        if(lockedButtons == true)unlockButtons();
     }else if (minutos == 0 && segundos ==0){
         blockButtons();
     }
@@ -149,12 +149,13 @@ function startTemp(){
         counterClick++;
     }
 };
-
+var lockedButtons=true;
 function blockButtons(){
     buttons=document.querySelectorAll('.neuropsi-button');
         buttons.forEach((button, index) => {
             button.disabled = true;
         });
+    lockedButtons=true;
 }
 
 function unlockButtons(){
@@ -162,6 +163,7 @@ function unlockButtons(){
         buttons.forEach((button, index) => {
             button.disabled = false;
         });
+    lockedButtons=false;
 }
 
 function restart(){

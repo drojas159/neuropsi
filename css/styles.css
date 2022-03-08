@@ -5,6 +5,17 @@
     background-color: #baccd9;
 }
 
+main, header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main{
+    background-color: #0062a7;
+    width: 60%;
+}
+
 body{
     background-color: #EDB309;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
