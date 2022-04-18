@@ -11,33 +11,12 @@
 </head>
 
 <body>
-    <header>
-        <img class="logo">
-        <h1>Neuropsi</h1>
-    </header>
-    <main >
-        <div class="main">
-            <div class="container" id="neuropsi-div">
-            </div>
-            <div class="container" id="score-div">
-                <button type="button" id="countdown" onclick="startTemp()">Empezar</button>
-                <button type="button" id="restart" onclick="restart()">Reiniciar</button>
-                <div class="count-temp">
-                    <div class="time">
-                        <div class="score" id="minute">03:</div>
-                        <!-- <p>Minutes</p> -->
-                    </div>
-                    <div class="time">
-                        <div class="score" id="second">00</div>
-                        <!-- <p>Segundos</p> -->
-                    </div>
-                </div>
-                <br><br>
-                <span id="amount-correct" class="score">Correctas: 0</span>
-                <span id="amount-incorrect" class="score">Incorrectas: 0</span>
-            </div>
+    <main>
+        <div class="begin-container">
+            <h1 class="title-index">Neuropsi</h1>
+            <button type="button" id="begin-neuropsi" onclick="window.location.href='./instructions.html'" class="start-button">Empezar</button>
+            <img class="logo-index">            
         </div>
-
     </main>
 </body>
 

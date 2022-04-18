@@ -62,7 +62,7 @@ var correctPlaces =[
 
 function buildNeuropsiGrid (){
     var neuropsiGridHtml;
-    neuropsiGridHtml = '<table id="neuropsi-grid">';
+    neuropsiGridHtml = '<table id="neuropsi-grid" class="neuropsi-grid">';
     for (var i=0; i< neuropsiGrid.length; i++){
         neuropsiGridHtml = neuropsiGridHtml + '<tr>';
         for(var j=0; j< neuropsiGrid[i].length;j++){
@@ -86,31 +86,45 @@ function identifyElement(id, figure){
         incorrect++;
         document.getElementById(id).firstChild.className = figure + "-clicked icon";
     }
-    document.getElementById("amount-correct").innerHTML="Correctas: "+correct;
-    document.getElementById("amount-incorrect").innerHTML="Incorrectas: "+incorrect;
+    /* console.log(correct);
+    console.log(incorrect); */
 }
-
+var start;
 window.onload = function() {
-    document.getElementById("neuropsi-div").innerHTML = buildNeuropsiGrid ();
+    
+    if (document.getElementById("neuropsi-div") != null){
+        
+        console.log("neuropsi");        
+        document.getElementById("neuropsi-div").innerHTML = buildNeuropsiGrid ();
+        start = performance.now();
+    }
+
+    if (document.getElementById("resultados")!= null){
+        console.log("results");
+        showResults();
+    }
 }
 
 let horas = 0;
-let minutos = 3;
+let minutos = 1;
 let segundos =0;
+var duration;
 
 function loadSeconds(){
+    /* console.log(minutos);
+    console.log(segundos); */
     let txtSeconds;
 
     if(segundos <0 ){
         segundos=59;
     }
-
+    
     if(segundos < 10){
         txtSeconds = `0${segundos}`;
     }else{
         txtSeconds = segundos;
     }
-    document.getElementById("second").innerHTML=txtSeconds;
+    //document.getElementById("second").innerHTML=txtSeconds;
     if (minutos == 0 && segundos >0){
         segundos --;
         if(lockedButtons == true)unlockButtons();
@@ -118,7 +132,11 @@ function loadSeconds(){
         segundos--;
         if(lockedButtons == true)unlockButtons();
     }else if (minutos == 0 && segundos ==0){
+        duration = 60000;
         blockButtons();
+        if (document.getElementById("neuropsi-div") != null){
+            redirectResults('No',0);
+        }
     }
     loadMinutes(segundos)
 }
@@ -137,18 +155,14 @@ function loadMinutes(segundos){
     }else{
         txtMinutes = minutos;
     }
-    document.getElementById("minute").innerHTML=txtMinutes+":";
+    // document.getElementById("minute").innerHTML=txtMinutes+":";
 }
 
-counterClick=0;
+
 var interval;
-function startTemp(){
-    if(counterClick==0){
-        interval=setInterval(loadSeconds, 1000)
-        
-        counterClick++;
-    }
-};
+interval=setInterval(loadSeconds, 1000)
+
+
 var lockedButtons=true;
 function blockButtons(){
     buttons=document.querySelectorAll('.neuropsi-button');
@@ -167,16 +181,38 @@ function unlockButtons(){
 }
 
 function restart(){
-    counterClick=0;
-    minutos=3;
+    minutos=1;
     segundos=0;
     correct = 0;
     incorrect = 0;
     clearInterval(interval);
-    document.getElementById("minute").innerHTML="03:";
-    document.getElementById("second").innerHTML="00";
-    document.getElementById("amount-correct").innerHTML="Correctas: "+correct;
-    document.getElementById("amount-incorrect").innerHTML="Incorrectas: "+incorrect;
-    document.getElementById("neuropsi-div").innerHTML = buildNeuropsiGrid ();
     blockButtons();
+}
+function redirectResults(finalyzed,tiempo){
+    if (tiempo == 1){
+        duration = performance.now() - start;
+    }
+    window.location.href='./results.html?good='+correct+'&bad='+incorrect+'&duration='+duration+'&finalyzed='+finalyzed;
+
+   
+}
+
+function showResults(){
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var correctAmount = url.searchParams.get("good");
+    var incorrectAmount = url.searchParams.get("bad");
+    var durationAmount = url.searchParams.get("duration");
+    var finalyzedAmount = url.searchParams.get("finalyzed");
+    durationAmount = formatDuration(durationAmount);
+    document.getElementById("finalyzed").innerHTML=finalyzedAmount;
+    document.getElementById("correct-amount").innerHTML=correctAmount;
+    document.getElementById("incorrect-amount").innerHTML=incorrectAmount;
+    document.getElementById("total-time").innerHTML=durationAmount;
+}
+
+function formatDuration(durationAmount){
+    var tiempo = (durationAmount/1000).toFixed(1);
+
+    return tiempo.toString()+" segundos";
 }

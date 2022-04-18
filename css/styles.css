@@ -1,3 +1,6 @@
+*{
+  margin:0;  
+}
 .neuropsi-button {
     padding: 2px;
     border: 0;
@@ -6,9 +9,21 @@
 }
 
 main, header{
-    display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    margin: auto;
+}
+
+header{
+    margin-top: 5px;
+}
+
+.button-end{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
 }
 
 #main{
@@ -16,15 +31,28 @@ main, header{
     width: 60%;
 }
 
+.begin-container{
+    margin: 0 25% 0 25%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 body{
     background-color: #EDB309;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.logo{
-    content: url(../images/logo-header.svg);
-    float: left;
-    margin-right:30px
+.logo-footer{
+    content: url(../images/logo-footer.svg);
+    margin: auto;
+}
+
+.logo-index{
+    content: url(../images/ucatolica_logo.png);
+    width: 20%;
+    margin: 5% auto auto auto;
+    display: block;
 }
 .triangle {
     content: url(../images/triangle.png);
@@ -94,14 +122,13 @@ body{
 }
 
 .icon {
-    height:35px;
+    height: 30px;
     padding: 2px;
 }
 
 .container {
-    float: left;
     background-color: #0062a7;
-    padding: 20px;
+    padding: 10px;
     height: auto ;
     color: #d3e1eb;
 }  
@@ -114,22 +141,104 @@ body{
     display: block;
 }
 
-#countdown{
+.start-button{
     background-color: #06a123;
-    font-size: 30px;
-    float: left;
+    font-size: 250%;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 15px 30px;
     color:#d3e1eb;
+    margin: auto;
+    display: block;
 }
 
-#restart{
+.restart-button{
     background-color: #b5050b;
     font-size: 30px;
     display: block;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color:#d3e1eb;
 }
-
+.finalyze-button{
+    background-color: #06a123;
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:#d3e1eb; 
+}
 th{
     padding: 0;
+}
+
+.title-index{
+    font-size: 450%;
+    text-align: center;
+    margin: 5% auto 5% auto;
+}
+
+footer{
+    background-color: #0062a7;
+    margin:0;
+    padding:5px 0 5px 0;
+    border: 0;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+p{
+    font-size: 25px;
+}
+
+.instructions-image{
+    padding: 15px 0;
+    width: 40%;
+    margin: 15px;
+}
+@media only screen and (min-width: 1080px) {
+    .neuropsi{
+        min-width: 580px;
+        width: 60%;
+        height: 30px;
+        margin: 0 20% 0 20%; 
+    }
+
+    .neuropsi-grid{
+        margin: 0 5% 0 5%;
+        width: 90%;
+    }
+}
+@media only screen and (max-width: 1080px) {
+    [class*="col-"] {
+        width: 100%;
+    }
+    .neuropsi{
+        min-width: 580px;
+        width: 100%;
+        height: 30px;
+        margin: 0; 
+    }
+
+    .neuropsi-grid{
+        margin: 0;
+        width: 100%;
+    }
+}
+
+.results{
+    /* background-color: blue; */
+    width: 60%;
+    height: auto;
+    margin: 0 20% 0 20%; 
+}
+
+#resultados th{
+    border: 1px solid black;
+}
+#resultados td{
+    border: 1px solid black;
+}
+#resultados tr{
+    border: 1px solid black;
+}
+
+.table-results {
+    width: 100%;
 }
